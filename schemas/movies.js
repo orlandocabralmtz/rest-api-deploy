@@ -1,4 +1,4 @@
-const z = require('zod');
+import z from 'zod';
 
 const movieSchema = z.object({
     title: z.string({
@@ -17,14 +17,13 @@ const movieSchema = z.object({
 });
 
 
-function validateMovie(object){
+export function validateMovie(object){
     return movieSchema.safeParse(object);
 
 }
 
 
-function validatePartialMovie(object){
+export function validatePartialMovie(object){
     return movieSchema.partial().safeParse(object);  // partial() permite que el objeto no tenga todas las propiedades del schema. partial() es un metodo de zod
 }
 
-module.exports = {validateMovie, validatePartialMovie};
